@@ -10,6 +10,7 @@ import android.util.JsonReader;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -59,13 +60,33 @@ public class MainActivity extends AppCompatActivity {
                                 .get();
                 String[] myNewVar = predictionResults.get(0).toString().split(",");
                 String actualName = myNewVar[22].split("name=")[1];
-                String myNewDef = dictionaryAPI.main(actualName);
-    //            String[] actualDef = myNewDef.split(",");
+                Gson newG = new Gson();
+                Dictionary myNewDef = newG.fromJson(dictionaryAPI.main(actualName), Dictionary.class);
+
                 Toast.makeText(MainActivity.this, actualName, Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this, dictionaryAPI.definition, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(MainActivity.this, myVar[0], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, actualDef[0], Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, myVar[0], Toast.LENGTH_SHORT).show()
+
             }
         });
+        ImageButton image1 = (ImageButton) findViewById(R.id.imgView1);
+        ImageButton image2 = (ImageButton) findViewById(R.id.imgView2);
+        ImageButton image3 = (ImageButton) findViewById(R.id.imgView3);
+        ImageButton image4 = (ImageButton) findViewById(R.id.imgView4);
+        image1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //TODO:Add code Here
+            }
+        });
+        image2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                //TODO:Add code Here
+            }
+        });
+
+
     }
 
     @Override
