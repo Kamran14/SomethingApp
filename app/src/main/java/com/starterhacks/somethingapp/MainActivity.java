@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+        final Dictionary dictionaryAPI = new Dictionary();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -58,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
                                 .get();
                 String[] myNewVar = predictionResults.get(0).toString().split(",");
                 String actualName = myNewVar[22].split("name=")[1];
-
-
-
+                String myNewDef = dictionaryAPI.main(actualName);
+    //            String[] actualDef = myNewDef.split(",");
                 Toast.makeText(MainActivity.this, actualName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, actualDef[0], Toast.LENGTH_SHORT).show();
                 //Toast.makeText(MainActivity.this, myVar[0], Toast.LENGTH_SHORT).show();
             }
         });
