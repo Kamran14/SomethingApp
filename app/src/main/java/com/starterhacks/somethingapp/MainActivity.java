@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 String myNewDef = dictionaryAPI.main(actualName);
     //            String[] actualDef = myNewDef.split(",");
                 Toast.makeText(MainActivity.this, actualName, Toast.LENGTH_SHORT).show();
-                //Toast.makeText(MainActivity.this, actualDef[0], Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, dictionaryAPI.definition, Toast.LENGTH_SHORT).show();
                 //Toast.makeText(MainActivity.this, myVar[0], Toast.LENGTH_SHORT).show();
             }
         });

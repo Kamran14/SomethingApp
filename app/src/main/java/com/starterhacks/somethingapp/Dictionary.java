@@ -17,11 +17,13 @@ import android.widget.Toast;
 
 public class Dictionary {
 
+public String definition;
 
     String wordDef = "";
     public String main(String theWOrd){
         new CallbackTask().execute(dictionaryEntries(theWOrd));
         return wordDef;
+
     }
     protected void onCreate(String theWord){
         new CallbackTask().execute(dictionaryEntries(theWord));
@@ -63,12 +65,27 @@ public class Dictionary {
                 return e.toString();
             }
         }
+
+
         @Override
         protected void onPostExecute(String result){
             super.onPostExecute(result);
             //Toast.makeText(null, result, Toast.LENGTH_SHORT).show();
             wordDef = result;
-            System.out.println(result);
+            //System.out.println(result);
+            int start = result.indexOf("definitions");
+            String def = "";
+
+            if (start>1){
+               // System.out.println (result.substring(start +15));
+                result = result.substring(start +15);
+                definition= result.split("\"")[1];
+               System.out.println (result.split("\"")[1]);
+
+            }
+
+
+
         }
     }
 }
