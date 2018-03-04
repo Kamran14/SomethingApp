@@ -6,11 +6,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.JsonReader;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONObject;
+import org.json.JSONStringer;
+
+import java.io.File;
+
+import java.lang.reflect.Array;
 import java.util.List;
 
 import clarifai2.api.ClarifaiBuilder;
@@ -44,12 +53,16 @@ public class MainActivity extends AppCompatActivity {
                 final List<ClarifaiOutput<Concept>> predictionResults =
                         client.getDefaultModels().generalModel()
                                 .predict()
-                                .withInputs(
-                                        ClarifaiInput.forImage("https://i.imgur.com/Yywr5Yc.png"))
+                                .withInputs(ClarifaiInput.forImage("http://i.imgur.com/Yywr5Yc.png"))
                                 .executeSync()
                                 .get();
-                String myVar = predictionResults.toString();
-                Toast.makeText(MainActivity.this, myVar, Toast.LENGTH_SHORT).show();
+                String[] myNewVar = predictionResults.get(0).toString().split(",");
+                String actualName = myNewVar[22].split("name=")[1];
+
+
+
+                Toast.makeText(MainActivity.this, actualName, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, myVar[0], Toast.LENGTH_SHORT).show();
             }
         });
     }
